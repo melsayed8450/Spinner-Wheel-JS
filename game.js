@@ -59,19 +59,13 @@ function getRandomColor() {
 }
 
 function getRandomRotation() {
-  return Math.floor(  Math.random() * 360); 
+  return Math.floor(360 + Math.random() * 360 * 4); 
 }
 
 function rotateWheelRandomly() {
   const wheel = document.getElementById("wheel");
-  const totalRotation = 360 * Math.floor(Math.random() * 5 + 1);
+  const totalRotation = getRandomRotation();
 
-  wheel.style.transition = "transform 2s ease";
   wheel.style.transform = `rotate(${totalRotation}deg)`;
-
-  setTimeout(() => {
-    const randomRotation = getRandomRotation();
-    div.style.transition = "transform 2s ease";
-    div.style.transform = `rotate(${totalRotation + randomRotation}deg)`;
-  }, 2000); 
+  wheel.style.transition = "transform 2s ease";
 }
