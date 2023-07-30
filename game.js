@@ -71,7 +71,12 @@ function rotateWheelRandomly() {
   if(isRandomSelected){
     currentRotation += getRandomRotation();
   }else if (clicksNumber != ''){
-    currentRotation += clicksNumber * (360/slices);
+    if(clicksNumber < 1){
+      warn("Please enter a valid number of clicks");
+    }else{
+      currentRotation += clicksNumber * (360/slices);
+    }
+    
   }else{
     warn("Please select number of clicks or random clicks");
   }
