@@ -1,5 +1,4 @@
-
-
+let currentRotation = 0;
 window.addEventListener('DOMContentLoaded', init);
 
 function init() {
@@ -22,6 +21,8 @@ function createSpinnerWheel() {
     slice.style.clipPath = getSliceClipPath(sliceAngle); 
     slice.style.backgroundColor = getRandomColor(); 
     const text = document.createElement("div");
+    text.style.fontSize = slices < 15 ? `40px`: `${600 / slices}px`;
+    text.style.marginLeft = slices < 50 ? `10%` : slices < 140 ? '3%' : '1%';
     text.className = "text";
     text.textContent = i + 1;
 
@@ -59,13 +60,27 @@ function getRandomColor() {
 }
 
 function getRandomRotation() {
-  return Math.floor(360 + Math.random() * 360 * 4); 
+  return Math.floor(360 + Math.random() * 360); 
 }
 
 function rotateWheelRandomly() {
+  const slices = localStorage.getItem('options')
   const wheel = document.getElementById("wheel");
-  const totalRotation = getRandomRotation();
+  const clicksNumber = document.getElementById("clicksNumber").value;
+  const isRandomSelected = document.getElementById("randomCheckBox").checked;
+  if(isRandomSelected){
+    currentRotation += getRandomRotation();
+  }else if (clicksNumber != ''){
+    currentRotation += clicksNumber * (360/slices);
+  }else{
+    warn("Please select number of clicks or random clicks");
+  }
+  
 
-  wheel.style.transform = `rotate(${totalRotation}deg)`;
+  wheel.style.transform = `rotate(${currentRotation}deg)`;
   wheel.style.transition = "transform 2s ease";
+}
+
+function warn(message) {
+  alert (message);
 }

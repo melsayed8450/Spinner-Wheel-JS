@@ -93,8 +93,7 @@
   font-size: 30px;
   font-weight: bold;
   text-transform: uppercase;
-  margin-bottom: 250px;
-  margin-left: 10%;
+  margin-bottom: 90%;
 }
 
 .arrow {
@@ -114,4 +113,8 @@
     border-bottom: 25px solid transparent;
     border-right: 25px solid #000000;
   }
+}
+
+.numberInput{
+  width: 30%;
 }
